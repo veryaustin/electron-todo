@@ -26,6 +26,8 @@ const menuTemplate = [
       },
       {
         label: 'Quit',
+        // Dynamical set key commands based on Mac or Windows
+        accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
         click() {
           app.quit();
         }
