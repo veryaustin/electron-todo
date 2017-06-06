@@ -46,7 +46,7 @@ const menuTemplate = [
       {
         label: 'Quit',
         // Dynamical set key commands based on Mac or Windows
-        accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
+        accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
         click() {
           app.quit();
         }
@@ -58,4 +58,20 @@ const menuTemplate = [
 // If the app is runing on Mac OS, we push an extra empty object into the menuTemplate array so menu works as a native mac app should
 if (process.platform === 'darwin') {
   menuTemplate.unshift({});
+}
+
+// Environment check to display developer tools if not in production
+if (process.env.NODE_ENV !== 'production') {
+  menuTemplate.push({
+    label: 'Developer',
+    submenu: [
+      {
+        label: 'Toggle Developer Tools',
+        accelerator: process.platform === 'darwin' ? 'Command+Alt+I' : 'Ctrl+Shift+I',
+        click(item, focusedWindow) {
+          focusedWindow.toggleDevTools();
+        }
+      }
+    ]
+  });
 }
