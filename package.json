@@ -1,0 +1,27 @@
+{
+  "name": "electron-todo",
+  "version": "1.0.0",
+  "description": "Electron todo list to learn more about app menu bars",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veryaustin/electron-todo.git"
+  },
+  "keywords": [
+    "electron",
+    "node",
+    "javascript"
+  ],
+  "author": "Austin Lauritsen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/veryaustin/electron-todo/issues"
+  },
+  "homepage": "https://github.com/veryaustin/electron-todo#readme",
+  "dependencies": {
+    "electron": "^1.6.10"
+  }
+}
