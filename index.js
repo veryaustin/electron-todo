@@ -1,6 +1,6 @@
 const electron = require('electron');
 
-const { app, BrowserWindow, Menu } = electron;
+const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 let mainWindow;
 let addWindow;
@@ -28,8 +28,17 @@ function createAddWindow() {
     title: 'Add New Todo'
   });
   addWindow.loadURL(`file://${__dirname}/add.html`);
+  
+  // Set addWindow when closed to null so it can be garbage collected. Not necessarily needed in this example as addWindow gets reassigned every time we create a new window
+  addWindow.on('closed', () => addWindow = null);
 }
 
+
+// Listen for new added todo
+ipcMain.on('todo:add', (event, todo) => {
+  mainWindow.webContents.send('todo:add', todo);
+  addWindow.close();
+});
 
 // Menu Template
 const menuTemplate = [
